@@ -1,8 +1,12 @@
 # Leetcode
 
-Following [**LABULADONG**](https://labuladong.github.io/algo/)
+My Progress: 
+[Leetcode](https://leetcode.com/TairanGao/)
+***加油吧***
 
 ## labuladong的题目列表
+
+*Following [**LABULADONG**](https://labuladong.github.io/algo/)*
 
 Code List: <https://leetcode.com/list/?selectedList=o82xu76s>
 
