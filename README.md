@@ -21,3 +21,6 @@
 
 ## 4. [**System Design**](system_design.md)
     
+## 5 Quant Finance
+
+- [ ] [Youtube: Financial Engineering](https://www.youtube.com/watch?v=oX7iyvZsAak&list=PL6zzGYGhbWrMpjEKDtnrHWyIj-oVLKCYD&index=1)
