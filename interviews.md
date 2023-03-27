@@ -13,8 +13,13 @@
 - 加班 for sure
 - 9 ppl in the team
 - learning abilities
-- Example: time series 
+- Example: time series
 
+
+## 2nd Round (Math)
+
+
+## 3rd Round (C++)
 
 # Tower
 
@@ -27,3 +32,14 @@
 2. Pair Coding
 3. 4 directors 1 by 1 (more experience) some tech
 4. Picky at bigger picture
+
+## 2nd round:
+ - calculate margin for all asset classes
+ - cme internal users
+ - write pricing models:
+   - black
+   - SABR models
+   - Asian option
+   - Spread option
+   - launch new products (from business models)
+  Next Round - meet more teams/qd team 
