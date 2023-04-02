@@ -14,10 +14,18 @@
 - 9 ppl in the team
 - learning abilities
 - Example: time series
+- **Mortgage model** group - **implementation**
 
 
 ## 2nd Round (Math)
 
+- interest rate models
+- bootstrap
+- prepay models(stats)
+- rate quants()
+- pricing quant
+- analytic and tasking
+- business ()
 
 ## 3rd Round (C++)
 
@@ -25,6 +33,14 @@
 
 1. pair coding
 2. virtual interview x 5 (1 hour)
+
+## 1st Round - with *Huaping*
+
+ - Virtual Pointer
+ - Move / copy move constructors 
+ - difference between virtual pointer vs V-table
+ - ...
+
 
 # CME
 
