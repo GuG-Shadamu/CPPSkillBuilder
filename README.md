@@ -9,7 +9,7 @@
 
 ### 2. **C++**
 
-- [ ] [C++面向对象开发](https://www.youtube.com/playlist?list=PLRTJhCIMo8HOIpVXaaI_yqihTuSTPUcCy)
+- [ ] [C++面向对象开发](https://www.youtube.com/playlist?list=PL-X74YXt4LVZ137kKM5dNfCIC4tsScerb)
 - [ ] [STL标准库与泛型编程 ](https://www.youtube.com/watch?v=Edcwv38c7d4&list=PLTcwR9j5y6W2Bf4S-qi0HBQlHXQVFoJrP)
 - [ ] C++新标准C++11&14
 - [ ] C++ 内存管理
