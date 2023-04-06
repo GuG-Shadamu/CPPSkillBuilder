@@ -59,3 +59,6 @@
    - Spread option
    - launch new products (from business models)
   Next Round - meet more teams/qd team 
+
+
+  
