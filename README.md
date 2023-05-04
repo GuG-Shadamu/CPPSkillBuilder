@@ -17,10 +17,9 @@
 - [ ] C++ 内存管理
 - [ ] C++ Startup 揭密：C++ 程序的生前和死后
 
-### 3. Operating System
+### 3. Advanced
 
 - [ ] [Operating Systems: Three Easy Pieces](https://pages.cs.wisc.edu/~remzi/OSTEP/)
-- [ ] [MIT 6.S081: Operating System Engineering](https://pdos.csail.mit.edu/6.828/2021/schedule.html)
 - [ ] [Computer Networking: A Top-Down Approach](https://gaia.cs.umass.edu/kurose_ross/lectures.php)
 - [ ] [Stanford CS143: Compilers](http://web.stanford.edu/class/cs143/)
 

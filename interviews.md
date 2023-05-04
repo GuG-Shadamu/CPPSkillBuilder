@@ -16,7 +16,6 @@
 - Example: time series
 - **Mortgage model** group - **implementation**
 
-
 ## 2nd Round (Math)
 
 - interest rate models
@@ -36,11 +35,10 @@
 
 ## 1st Round - with *Huaping*
 
- - Virtual Pointer
- - Move / copy move constructors 
- - difference between virtual pointer vs V-table
- - ...
-
+- Virtual Pointer
+- Move / copy move constructors
+- difference between virtual pointer vs V-table
+- ...
 
 # CME
 
@@ -49,16 +47,23 @@
 3. 4 directors 1 by 1 (more experience) some tech
 4. Picky at bigger picture
 
-## 2nd round:
- - calculate margin for all asset classes
- - cme internal users
- - write pricing models:
-   - black
-   - SABR models
-   - Asian option
-   - Spread option
-   - launch new products (from business models)
-  Next Round - meet more teams/qd team 
+## 2nd round
 
+- calculate margin for all asset classes
+- cme internal users
+- write pricing models:
+  - black
+  - SABR models
+  - Asian option
+  - Spread option
+  - launch new products (from business models)
+  Next Round - meet more teams/qd team
 
-  
+## [TS Imagine](https://tsimagine.com/)
+
+- Software Company
+- Trading and Risk
+- Montreal - new office - 80-90 ppl
+- implementation
+- data (a lot)
+- 
