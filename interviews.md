@@ -66,4 +66,5 @@
 - Montreal - new office - 80-90 ppl
 - implementation
 - data (a lot)
+- focus on C++
 - 
