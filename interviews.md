@@ -67,4 +67,23 @@
 - implementation
 - data (a lot)
 - focus on C++
-- 
+-
+
+## Potential Questions
+
+- Implement a fixed-size circular buffer to store market data updates. Include methods for efficient insertion, retrieval, and handling of overflow.
+- Design an order book data structure to efficiently store and manage limit orders for multiple securities. Include methods for order placement, cancellation, and retrieval of the best bid/ask prices.
+- Implement a real-time market data feed handler that can receive and process market data updates from multiple sources concurrently.
+- Design an algorithm for detecting and handling market anomalies or price discrepancies in real-time trading data.
+- Develop a trade execution engine that can handle high volumes of trade orders, enforce order matching rules, and ensure fast order execution.
+
+## Garda
+
+- **Quant Dev** role
+- 10billion (144 ppl)
+- started in 2016
+- Fixed Income + Rates Trading
+- addin other commodity + FX + other
+- tech division - all report to CTO
+- Software / Quant Dev / Data Science
+- mid next week
