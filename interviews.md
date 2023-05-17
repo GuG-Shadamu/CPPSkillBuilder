@@ -87,3 +87,23 @@
 - tech division - all report to CTO
 - Software / Quant Dev / Data Science
 - mid next week
+
+## Elixir
+
+ - team: 9 ppl 
+ - want to double it
+ - 4 engineers (work with)
+ - CEO and COO
+ - agile 
+ - Jira (similar)
+ - remote (firstly)
+ - Discord (as well)
+ - Interview (5 stage):
+   - tech (python) - live python
+   - pen and paper (stats, brain teasers)
+   - architech -3rd
+   - follow up with CEO 
+   - Quant advaiser
+   - 
+   - 
+ - 
