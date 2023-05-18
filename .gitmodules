@@ -1,3 +1,6 @@
 [submodule "job-seeking"]
 	path = job-seeking
 	url = https://github.com/GuG-Shadamu/job-seeking.git
+[submodule "Lectures/CS149-parallel-computing"]
+	path = Lectures/CS149-parallel-computing
+	url = https://github.com/GuG-Shadamu/CS149-parallel-computing.git
