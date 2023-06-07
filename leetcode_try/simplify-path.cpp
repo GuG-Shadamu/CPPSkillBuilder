@@ -2,7 +2,7 @@
  * @Author: Tairan Gao
  * @Date:   2023-06-07 11:32:39
  * @Last Modified by:   Tairan Gao
- * @Last Modified time: 2023-06-07 12:02:48
+ * @Last Modified time: 2023-06-07 12:29:11
  */
 
 #include <vector>
@@ -19,14 +19,10 @@ public:
         string sol = "";
         deque<string> path_deque;
         string temp = "";
-        for (size_t i = 0u; i < path.size(); i++)
+        for (size_t i = 0u; i <= path.size(); i++)
         {
 
-            if (path[i] != '/')
-            {
-                temp += path[i];
-            }
-            else
+            if (path[i] == '/' || i == path.size()) //
             {
                 if (temp == "")
                     continue;
@@ -36,23 +32,27 @@ public:
                 {
                     if (!path_deque.empty())
                     {
-                        path_deque.pop_front();
+                        path_deque.pop_back();
                     }
                     temp = "";
                 }
                 else
                 {
-                    path_deque.push_front(temp);
+                    path_deque.push_back(temp);
                     temp = "";
                 }
+            }
+            else
+            {
+                temp += path[i];
             }
         }
 
         while (!path_deque.empty())
         {
             sol += "/";
-            sol += path_deque.back();
-            path_deque.pop_back();
+            sol += path_deque.front();
+            path_deque.pop_front();
         }
         if (sol == "")
         {
@@ -65,11 +65,11 @@ public:
 int main()
 {
     Solution s;
-    cout << s.simplifyPath("/home/") << endl;
-    cout << s.simplifyPath("/../") << endl;
-    cout << s.simplifyPath("/home//foo/") << endl;
-    cout << s.simplifyPath("/a/./b/../../c/") << endl;
-    cout << s.simplifyPath("/a/../../b/../c//.//") << endl;
+    // cout << s.simplifyPath("/home/") << endl;
+    // cout << s.simplifyPath("/../") << endl;
+    // cout << s.simplifyPath("/home//foo/") << endl;
+    // cout << s.simplifyPath("/a/./b/../../c/") << endl;
+    // cout << s.simplifyPath("/a/../../b/../c//.//") << endl;
     cout << s.simplifyPath("/a//b////c/d//././/..") << endl;
 
     return 0;
