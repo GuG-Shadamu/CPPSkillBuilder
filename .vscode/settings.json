@@ -1,4 +1,10 @@
 {
-    "cmake.configureOnOpen": false,
-    "cmake.sourceDirectory": "/home/tairan-ubuntu/git/Quant-Study/job-seeking/C++/bmo"
+  "cmake.configureOnOpen": false,
+  "cmake.sourceDirectory": "/home/tairan-ubuntu/git/Quant-Study/job-seeking/C++/bmo",
+  "files.associations": {
+    "iostream": "cpp",
+    "vector": "cpp",
+    "ostream": "cpp",
+    "deque": "cpp"
+  }
 }
