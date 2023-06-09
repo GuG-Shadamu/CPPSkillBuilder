@@ -2,7 +2,7 @@
  * @Author: Tairan Gao
  * @Date:   2023-05-24 14:36:07
  * @Last Modified by:   Tairan Gao
- * @Last Modified time: 2023-06-09 13:13:46
+ * @Last Modified time: 2023-06-09 13:26:18
  */
 #include <vector>
 #include <iostream>
@@ -12,7 +12,7 @@
 
 using namespace std;
 
-class Solution1
+class Solution
 {
 public:
     long long maxScore(vector<int> &nums1, vector<int> &nums2, int k)
@@ -49,7 +49,7 @@ public:
 
 int main()
 {
-    Solution1 s;
+    Solution s;
     vector<int> num1 = {1, 3, 3, 2};
     vector<int> num2 = {2, 1, 3, 4};
 

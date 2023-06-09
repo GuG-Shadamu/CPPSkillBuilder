@@ -2,7 +2,7 @@
  * @Author: Tairan Gao
  * @Date:   2023-06-07 11:18:50
  * @Last Modified by:   Tairan Gao
- * @Last Modified time: 2023-06-09 13:13:46
+ * @Last Modified time: 2023-06-09 13:26:18
  */
 #include <vector>
 #include <iostream>
@@ -10,7 +10,7 @@
 #include <map>
 using namespace std;
 
-class Solution1
+class Solution
 {
 public:
     string intToRoman(int num)
@@ -49,7 +49,7 @@ public:
 
 int main()
 {
-    Solution1 s;
+    Solution s;
     cout << s.intToRoman(3) << endl;
     cout << s.intToRoman(4) << endl;
     cout << s.intToRoman(9) << endl;

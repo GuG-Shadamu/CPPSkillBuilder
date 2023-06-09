@@ -2,7 +2,7 @@
  * @Author: Tairan Gao
  * @Date:   2023-06-09 11:50:15
  * @Last Modified by:   Tairan Gao
- * @Last Modified time: 2023-06-09 13:13:46
+ * @Last Modified time: 2023-06-09 13:26:18
  */
 #include <vector>
 #include <iostream>
@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution1
+class Solution
 {
 public:
     char nextGreatestLetter(vector<char> &letters, char target)
@@ -48,7 +48,7 @@ public:
 
 int main()
 {
-    Solution1 s;
+    Solution s;
     vector<char> letters = {'c', 'f', 'j', 'j'};
     char target = 'g';
     cout << s.nextGreatestLetter(letters, target) << endl;

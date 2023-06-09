@@ -2,7 +2,7 @@
  * @Author: Tairan Gao
  * @Date:   2023-06-07 11:32:39
  * @Last Modified by:   Tairan Gao
- * @Last Modified time: 2023-06-09 13:13:46
+ * @Last Modified time: 2023-06-09 13:26:18
  */
 
 #include <vector>
@@ -11,7 +11,7 @@
 #include <deque>
 using namespace std;
 
-class Solution1
+class Solution
 {
 public:
     string simplifyPath(string path)
@@ -64,7 +64,7 @@ public:
 
 int main()
 {
-    Solution1 s;
+    Solution s;
     // cout << s.simplifyPath("/home/") << endl;
     // cout << s.simplifyPath("/../") << endl;
     // cout << s.simplifyPath("/home//foo/") << endl;

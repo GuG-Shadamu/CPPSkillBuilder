@@ -2,7 +2,7 @@
  * @Author: Tairan Gao
  * @Date:   2023-06-08 22:16:46
  * @Last Modified by:   Tairan Gao
- * @Last Modified time: 2023-06-09 13:13:46
+ * @Last Modified time: 2023-06-09 13:26:18
  */
 
 #include <string>
@@ -11,7 +11,7 @@
 #include <iostream>
 using namespace std;
 
-class Solution1
+class Solution
 {
 public:
     bool wordBreak(string s, vector<string> &wordDict)
@@ -59,7 +59,7 @@ public:
 
 int main()
 {
-    Solution1 s;
+    Solution s;
     string str = "aaaaaaaaa";
     vector<string> wordDict = {"a", "aa"};
     cout << s.wordBreak(str, wordDict) << endl;

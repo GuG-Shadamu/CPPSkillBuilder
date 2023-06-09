@@ -12,7 +12,7 @@
 #include <set>
 using namespace std;
 
-class Solution1
+class Solution
 {
 public:
     int calculate(string s)
@@ -92,7 +92,7 @@ public:
 
 int main()
 {
-    Solution1 s;
+    Solution s;
     cout << s.calculate("(1 + 1)") << endl;
     cout << s.calculate(" 2-(1 + 2) ") << endl;
     cout << s.calculate("((5)-3)+ (3-(12) + 7) - 3333") << endl;

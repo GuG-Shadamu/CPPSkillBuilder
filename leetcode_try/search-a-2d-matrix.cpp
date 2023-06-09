@@ -2,7 +2,7 @@
  * @Author: Tairan Gao
  * @Date:   2023-06-09 12:44:04
  * @Last Modified by:   Tairan Gao
- * @Last Modified time: 2023-06-09 13:20:56
+ * @Last Modified time: 2023-06-09 13:26:18
  */
 
 #include <vector>
@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution1
+class Solution
 {
 public:
     bool searchMatrix(vector<vector<int>> &matrix, int target)
