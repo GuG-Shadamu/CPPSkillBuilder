@@ -2,13 +2,13 @@
  * @Author: Tairan Gao
  * @Date:   2023-06-07 10:55:53
  * @Last Modified by:   Tairan Gao
- * @Last Modified time: 2023-06-07 11:18:32
+ * @Last Modified time: 2023-06-09 13:13:46
  */
 #include <vector>
 #include <iostream>
 using namespace std;
 
-class Solution
+class Solution1
 {
 public:
     int removeDuplicates(vector<int> &nums)
@@ -30,7 +30,7 @@ public:
 
 int main()
 {
-    Solution s;
+    Solution1 s;
     vector<int> nums = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
     s.removeDuplicates(nums);
 

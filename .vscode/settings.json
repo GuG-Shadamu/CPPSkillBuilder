@@ -5,6 +5,7 @@
     "iostream": "cpp",
     "vector": "cpp",
     "ostream": "cpp",
-    "deque": "cpp"
+    "deque": "cpp",
+    "functional": "cpp"
   }
 }

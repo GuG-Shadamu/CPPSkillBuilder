@@ -2,7 +2,7 @@
  * @Author: Tairan Gao
  * @Date:   2023-06-07 13:29:57
  * @Last Modified by:   Tairan Gao
- * @Last Modified time: 2023-06-07 13:32:28
+ * @Last Modified time: 2023-06-09 13:13:46
  */
 
 #include <vector>
@@ -10,7 +10,7 @@
 #include <stack>
 using namespace std;
 
-class Solution
+class Solution1
 {
 public:
     int evalRPN(vector<string> &tokens)
@@ -61,7 +61,7 @@ public:
 
 int main()
 {
-    Solution s;
+    Solution1 s;
     vector<string> tokens = {"2", "1", "+", "3", "*"};
     auto res = s.evalRPN(tokens);
     cout << res << endl;
