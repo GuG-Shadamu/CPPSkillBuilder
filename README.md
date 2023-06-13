@@ -5,7 +5,7 @@
 ~~主要是监督自己是不是在偷懒~~
 
 ## Computer Science
-### 1. [**Leetcode**](https://leetcode.com/GuG_Shadamu/)
+### 1. [**Leetcode**](leetcode_try)
 
 ### 2. **C++**
 
