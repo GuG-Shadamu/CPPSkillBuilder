@@ -10,6 +10,8 @@ Note this is not a full list, only the ones I want to use debugger
 
 - [combination-sum-ii.py](./leetcode_try/combination-sum-ii.py)
 
+- [letter-combinations-of-a-phone-number.py](./leetcode_try/letter-combinations-of-a-phone-number.py)
+
 - [maximum-distance-in-arrays.py](./leetcode_try/maximum-distance-in-arrays.py)
 
 - [maximum-performance-of-a-team.py](./leetcode_try/maximum-performance-of-a-team.py)
@@ -22,7 +24,11 @@ Note this is not a full list, only the ones I want to use debugger
 
 - [number-of-subsequences-that-satisfy-the-given-sum-condition.py](./leetcode_try/number-of-subsequences-that-satisfy-the-given-sum-condition.py)
 
+- [odd-even-linked-list.py](./leetcode_try/odd-even-linked-list.py)
+
 - [permutations-ii.py](./leetcode_try/permutations-ii.py)
+
+- [single-threaded-cpu.py](./leetcode_try/single-threaded-cpu.py)
 
 - [stoneGameII.py](./leetcode_try/stoneGameII.py)
 
@@ -41,6 +47,8 @@ Note this is not a full list, only the ones I want to use debugger
 - [find-smallest-letter-greater-than-target.cpp](./leetcode_try/find-smallest-letter-greater-than-target.cpp)
 
 - [integer-to-roman.cpp](./leetcode_try/integer-to-roman.cpp)
+
+- [letter-combinations-of-a-phone-number.cpp](./leetcode_try/letter-combinations-of-a-phone-number.cpp)
 
 - [maximal-square.cpp](./leetcode_try/maximal-square.cpp)
 
