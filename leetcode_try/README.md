@@ -1,6 +1,6 @@
 # Leetcode Pracetice Questions in Folder
 
-Note this is not a full list, only the ones I want to use debugger 
+Note this is not a full list, only the ones need a debugger to understand the code more
 
  [My Profile](https://leetcode.com/GuG_Shadamu/) 
 
@@ -13,6 +13,8 @@ Note this is not a full list, only the ones I want to use debugger
 - [letter-combinations-of-a-phone-number.py](./leetcode_try/letter-combinations-of-a-phone-number.py)
 
 - [maximum-distance-in-arrays.py](./leetcode_try/maximum-distance-in-arrays.py)
+
+- [maximum-level-sum-of-a-binary-tree.py](./leetcode_try/maximum-level-sum-of-a-binary-tree.py)
 
 - [maximum-performance-of-a-team.py](./leetcode_try/maximum-performance-of-a-team.py)
 
@@ -28,7 +30,11 @@ Note this is not a full list, only the ones I want to use debugger
 
 - [permutations-ii.py](./leetcode_try/permutations-ii.py)
 
+- [search-in-rotated-sorted-array.py](./leetcode_try/search-in-rotated-sorted-array.py)
+
 - [single-threaded-cpu.py](./leetcode_try/single-threaded-cpu.py)
+
+- [sliding-window-maximum.py](./leetcode_try/sliding-window-maximum.py)
 
 - [stoneGameII.py](./leetcode_try/stoneGameII.py)
 
@@ -65,6 +71,8 @@ Note this is not a full list, only the ones I want to use debugger
 - [search-a-2d-matrix.cpp](./leetcode_try/search-a-2d-matrix.cpp)
 
 - [simplify-path.cpp](./leetcode_try/simplify-path.cpp)
+
+- [sliding-window-maximum.cpp](./leetcode_try/sliding-window-maximum.cpp)
 
 - [toss-strange-coins.cpp](./leetcode_try/toss-strange-coins.cpp)
 
