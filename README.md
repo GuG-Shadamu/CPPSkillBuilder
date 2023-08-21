@@ -37,7 +37,7 @@ My preperation for Quant Dev Interviews:
 - [Financial-Engineering-Course](Lectures&Books/FinancialEngineering_IR_xVA-main)
 - [Computational-Finance-Course](Lectures&Books/Computational-Finance-Course)
 - [Options-Futures-and-Other-Derivatives](Lectures&Books/Options-Futures-and-Other-Derivatives)
-- []
+- [Quantitative-Finance-With-Python](Lectures&Books/Quantitative-Finance-With-Python)
 
 ---
 
