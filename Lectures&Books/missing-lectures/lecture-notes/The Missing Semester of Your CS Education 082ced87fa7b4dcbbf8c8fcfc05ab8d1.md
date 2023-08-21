@@ -1,4 +1,4 @@
-# The Missing Semester of Your CS Education
+# Lecture Notes
 
 # Lecture1: Shell
 
@@ -214,35 +214,3 @@
 # Lecture6: Git
 
 [Lecture 6: Version Control (git) (2020) - YouTube](https://www.youtube.com/watch?v=2sjqTHE0zok)
-
-- 
-
-# Lecture7
-
-[Shell Tools and Scripting · Missing Semester (mit.edu)](https://missing.csail.mit.edu/2020/shell-tools/)
-
-- 
-
-# Lecture8
-
-[Shell Tools and Scripting · Missing Semester (mit.edu)](https://missing.csail.mit.edu/2020/shell-tools/)
-
-- 
-
-# Lecture9
-
-[Shell Tools and Scripting · Missing Semester (mit.edu)](https://missing.csail.mit.edu/2020/shell-tools/)
-
-- 
-
-# Lecture10
-
-[Shell Tools and Scripting · Missing Semester (mit.edu)](https://missing.csail.mit.edu/2020/shell-tools/)
-
-- 
-
-# Lecture11
-
-[Shell Tools and Scripting · Missing Semester (mit.edu)](https://missing.csail.mit.edu/2020/shell-tools/)
-
--
