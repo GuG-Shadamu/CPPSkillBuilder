@@ -1,6 +1,6 @@
 # Leetcode Pracetice Questions in Folder
 
-Note this is not a full list, only the ones need a debugger to understand the code more
+Note this is not a full list, only the ones I want to use debugger 
 
  [My Profile](https://leetcode.com/GuG_Shadamu/) 
 
@@ -9,6 +9,8 @@ Note this is not a full list, only the ones need a debugger to understand the co
 - [3Sum.py](./leetcode_try/3Sum.py)
 
 - [combination-sum-ii.py](./leetcode_try/combination-sum-ii.py)
+
+- [find-median-from-data-stream.py](./leetcode_try/find-median-from-data-stream.py)
 
 - [letter-combinations-of-a-phone-number.py](./leetcode_try/letter-combinations-of-a-phone-number.py)
 
@@ -40,6 +42,8 @@ Note this is not a full list, only the ones need a debugger to understand the co
 
 ## C++ Files
 
+- [01-matrix.cpp](./leetcode_try/01-matrix.cpp)
+
 - [basic-calculator.cpp](./leetcode_try/basic-calculator.cpp)
 
 - [check-if-a-number-is-majority-element-in-a-sorted-array.cpp](./leetcode_try/check-if-a-number-is-majority-element-in-a-sorted-array.cpp)
@@ -48,6 +52,8 @@ Note this is not a full list, only the ones need a debugger to understand the co
 
 - [evaluate-reverse-polish-notation.cpp](./leetcode_try/evaluate-reverse-polish-notation.cpp)
 
+- [find-median-from-data-stream.cpp](./leetcode_try/find-median-from-data-stream.cpp)
+
 - [find-peak-element.cpp](./leetcode_try/find-peak-element.cpp)
 
 - [find-smallest-letter-greater-than-target.cpp](./leetcode_try/find-smallest-letter-greater-than-target.cpp)
@@ -55,6 +61,8 @@ Note this is not a full list, only the ones need a debugger to understand the co
 - [integer-to-roman.cpp](./leetcode_try/integer-to-roman.cpp)
 
 - [letter-combinations-of-a-phone-number.cpp](./leetcode_try/letter-combinations-of-a-phone-number.cpp)
+
+- [longest-increasing-path-in-a-matrix.cpp](./leetcode_try/longest-increasing-path-in-a-matrix.cpp)
 
 - [maximal-square.cpp](./leetcode_try/maximal-square.cpp)
 
