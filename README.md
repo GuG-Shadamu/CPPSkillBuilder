@@ -8,7 +8,7 @@ My preperation for Quant Dev Interviews:
 
 - Leetcode
   
-  - [My Practice Git](leetcode_try)
+  - [My Practice Git](leetcode)
   -  [Leetcode Homepage](https://leetcode.com/GuG_Shadamu/)
 
 - C++ Lectures:

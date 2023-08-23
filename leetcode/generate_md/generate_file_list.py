@@ -2,7 +2,7 @@
 # @Author: Tairan Gao
 # @Date:   2023-06-13 00:56:38
 # @Last Modified by:   Tairan Gao
-# @Last Modified time: 2023-06-13 01:07:24
+# @Last Modified time: 2023-08-23 10:22:53
 
 import os
 
@@ -43,7 +43,7 @@ def generate_file_list(folder_path):
 
 
 # Specify the folder path
-folder_path = "./leetcode_try/"
+folder_path = "./leetcode/"
 
 # Generate the file list
 generate_file_list(folder_path)
