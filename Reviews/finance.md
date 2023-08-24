@@ -38,15 +38,6 @@ The term \( \frac{1}{2} \sigma^2 \) arises from Ito's Lemma due to the quadratic
   
 A continues martingale is a Brownian motion **if and only if** its quadratic variation over each interval [0, T] equals T
 
-##  Ito Lemma for Brownian motion:
-
-Let \( B(t) \) be a standard Brownian motion, and let \( f(t, x) \) be a twice continuously differentiable function. If \( X(t) \) is given by
-
-\[ X(t) = f(t, B(t)) \]
-
-then the differential \( dX(t) \) is given by:
-
-\[ dX(t) = \frac{\partial f}{\partial t} dt + \frac{\partial f}{\partial x} dB(t) + \frac{1}{2} \frac{\partial^2 f}{\partial x^2} dt \]
 
 
 ##  Martingale
@@ -65,3 +56,41 @@ A stochastic process \( \{ X_t \} \) is a martingale with respect to a filtratio
 3. **Martingale Property**: \( E[X_{t+s} | \mathcal{F}_t] = X_t \) for all \( s \geq 0 \) and \( t \).
    - The conditional expected value of \( X_{t+s} \), given all the information up to time \( t \), is \( X_t \).
 
+
+## Ito's 
+
+
+### Ito Processes
+
+Let \( X(t) \) and \( Y(t) \) be defined as:
+
+\[
+\begin{aligned}
+dX_t &= a_1(t, X_t) dt + b_1(t, X_t) dW_{1t} \\
+dY_t &= a_2(t, Y_t) dt + b_2(t, Y_t) dW_{2t}
+\end{aligned}
+\]
+
+### Ito's Lemma for 2 processes (multi Ito's processes)
+
+For a twice-differentiable function \( g(t, x, y) \), the differential \( dZ(t) \) is given by:
+
+\[
+\begin{aligned}
+dZ(t) &= \frac{\partial g}{\partial t} dt + \frac{\partial g}{\partial x} dX_t + \frac{\partial g}{\partial y} dY_t \\
+&\quad + \frac{1}{2} \frac{\partial^2 g}{\partial x^2} (b_1(t, X_t))^2 dt + \frac{1}{2} \frac{\partial^2 g}{\partial y^2} (b_2(t, Y_t))^2 dt \\
+&\quad + \frac{\partial^2 g}{\partial x \partial y} b_1(t, X_t) b_2(t, Y_t) dt
+\end{aligned}
+\]
+
+Here, \( \frac{\partial g}{\partial t} \), \( \frac{\partial g}{\partial x} \), \( \frac{\partial g}{\partial y} \), \( \frac{\partial^2 g}{\partial x^2} \), \( \frac{\partial^2 g}{\partial y^2} \), and \( \frac{\partial^2 g}{\partial x \partial y} \) are the partial derivatives of \( g \) with respect to \( t \), \( x \), and \( y \), and their second-order mixed derivatives.
+
+###  Ito Lemma for Brownian motion:
+
+Let \( B(t) \) be a standard Brownian motion, and let \( f(t, x) \) be a twice continuously differentiable function. If \( X(t) \) is given by
+
+\[ X(t) = f(t, B(t)) \]
+
+then the differential \( dX(t) \) is given by:
+
+\[ dX(t) = \frac{\partial f}{\partial t} dt + \frac{\partial f}{\partial x} dB(t) + \frac{1}{2} \frac{\partial^2 f}{\partial x^2} dt \]
