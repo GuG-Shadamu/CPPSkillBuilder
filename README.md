@@ -7,7 +7,7 @@ My preperation for Quant Dev Interviews:
 ## Reviews:
 
 - [CPP Notes](Reviews/Cpp_Reviews)
-- [Finance Notes](Reviews/Finance)
+
 
 
 ## Programming
@@ -15,7 +15,7 @@ My preperation for Quant Dev Interviews:
 - Leetcode
   
   - [My Practice Git](leetcode)
-  -  [Leetcode Homepage](https://leetcode.com/GuG_Shadamu/)
+  - [Leetcode Homepage](https://leetcode.com/GuG_Shadamu/)
 
 
 - Book & Lectures
