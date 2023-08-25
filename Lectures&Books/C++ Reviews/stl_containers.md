@@ -38,3 +38,4 @@
 
 - Hash Map
 - Seperate Chaining (by Allocator)
+- Cannot use [ ] to insert
