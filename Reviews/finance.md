@@ -12,7 +12,7 @@
 
 ### Model Black-Scholes Equation and its Logarithmic Form:  
 
-\[ \frac{dS}{S} = \mu dt + \sigma dB \]
+$\frac{dS}{S} = \mu dt + \sigma dB$
 
 Where:
 
