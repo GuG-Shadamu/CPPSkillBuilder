@@ -25,7 +25,7 @@ Using new process:
 
 $$X(t) = \ln(S(t))$$
 
-By applying Ito's Lemma, the differential$dX(t)$is:
+By applying Ito's Lemma, the differential $dX(t)$ is:
 
 $$dX(t) = \frac{dS}{S} - \frac{1}{2} \sigma^2 dt$$
 
@@ -53,11 +53,11 @@ A martingale is a type of stochastic process that models a fair game. In formal 
 
 A stochastic process $X_t$ is a martingale with respect to a filtration $\mathcal{F}_t$ if:
 
-1. **Integrability**:  $E[|X_t|] < \infty$ for all $t$.
+1. **Integrability**: $E[|X_t|] < \infty$ for all $t$.
    - The expected value of the absolute value of $X_t$ is finite for all $t$.
 
-2. **Adaptedness**: $X_t$ is $\mathcal{F}_t$-measurable for each $t$. (the value of the process at time $t$ t doesn't depend on any future information; it's only based on what we know up to and including time $t$ .)
-   - $X_t$is adapted to the filtration $\mathcal{F}_t$.
+2. **Adaptedness**: $X_t$  is $\mathcal{F}_t$-measurable for each $t$. (the value of the process at time $t$ t doesn't depend on any future information; it's only based on what we know up to and including time $t$ .)
+   - $X_t$ is adapted to the filtration $\mathcal{F}_t$.
 
 3. **Martingale Property**: $E[X_{t+s} | \mathcal{F}_t] = X_t$ for all $s \geq 0$ and $t$.
    - The conditional expected value of $X_{t+s}$, given all the information up to time $t$, is $X_t$.
@@ -92,7 +92,7 @@ Here, $\frac{\partial g}{\partial t}$, $\frac{\partial g}{\partial x}$, $\frac{\
 
 ### Ito Lemma for Brownian motion
 
-Let$B(t)$be a standard Brownian motion, and let $f(t, x)$ be a twice continuously differentiable function. If $X(t)$ is given by
+Let $B(t)$ be a standard Brownian motion, and let $f(t, x)$ be a twice continuously differentiable function. If $X(t)$ is given by
 
 $$X(t) = f(t, B(t))$$
 
