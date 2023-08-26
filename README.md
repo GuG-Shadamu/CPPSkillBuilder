@@ -7,7 +7,7 @@ My preperation for Quant Dev Interviews:
 ## Reviews:
 
 - [CPP Notes](Reviews/Cpp_Reviews)
-
+- [Finance](Reviews/Finance)
 
 
 ## Programming
