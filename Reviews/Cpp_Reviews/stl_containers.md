@@ -32,7 +32,8 @@
 
 ## Map, Set
 - Built by [Red–black tree](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree)
-
+- **Set**:
+  - The key property for this question is that iterators to elements in a std::set remain valid as long as the element they point to is not removed.
 
 ## Unordered_Map, Unordered_Set
 
