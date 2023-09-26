@@ -9,38 +9,42 @@ This is more of an idiom than a design pattern. In C++, resource management (lik
 ## Curiously Recurring Template Pattern (CRTP):
 
 This is a C++ technique where a class Derived inherits from a base class template instantiated with Derived itself. It's a form of static polymorphism.
+```cpp
+template <typename Derived>
+class Base {};
 
-    template <typename Derived>
-    class Base {};
-
-    class Derived : public Base<Derived> {};
+class Derived : public Base<Derived> {};
+```
 
 CRTP allows the base class to use methods of the derived class without them being virtual. 
 Example:
 
-    template <typename Derived>
-    class Base {
-    public:
-        void interface() {
-            static_cast<Derived*>(this)->implementation();
-        }
-        
-        void anotherInterface() {
-            // Some default behavior or additional behavior
-        }
-    };
-
-    class Derived : public Base<Derived> {
-    public:
-        void implementation() {
-            // Derived class's specific behavior
-        }
-    };
-
-    int main() {
-        Derived d;
-        d.interface();  // Calls Derived's implementation
+```cpp
+template <typename Derived>
+class Base {
+public:
+    void interface() {
+        static_cast<Derived*>(this)->implementation();
     }
+    
+    void anotherInterface() {
+        // Some default behavior or additional behavior
+    }
+};
+
+class Derived : public Base<Derived> {
+public:
+    void implementation() {
+        // Derived class's specific behavior
+    }
+};
+
+int main() {
+    Derived d;
+    d.interface();  // Calls Derived's implementation
+}
+
+```
 
 ### Pros:
 
@@ -54,40 +58,45 @@ Famous Example: String class in C++
 ### Basic Structure
 
 - Header:
-  
-        #include <memory> // for std::unique_ptr
+```cpp
+#include <memory> // for std::unique_ptr
 
-        class MyClassImpl; // forward declaration
+class MyClassImpl; // forward declaration
 
-        class MyClass {
-        public:
-            MyClass();
-            ~MyClass();
-            void someMethod();
-            
-        private:
-            std::unique_ptr<MyClassImpl> pImpl;
-        };
+class MyClass {
+public:
+    MyClass();
+    ~MyClass();
+    void someMethod();
+    
+private:
+    std::unique_ptr<MyClassImpl> pImpl;
+};
+
+```
+
 
 
 - Source File:
-  
-        #include "MyClass.h"
+```cpp
+#include "MyClass.h"
 
-        class MyClassImpl {
-        public:
-            void someMethodImpl() {
-                // Actual implementation here
-            }
-        };
+class MyClassImpl {
+public:
+    void someMethodImpl() {
+        // Actual implementation here
+    }
+};
 
-        MyClass::MyClass() : pImpl(new MyClassImpl()) {}
+MyClass::MyClass() : pImpl(new MyClassImpl()) {}
 
-        MyClass::~MyClass() = default;
+MyClass::~MyClass() = default;
 
-        void MyClass::someMethod() {
-            pImpl->someMethodImpl();
-        }
+void MyClass::someMethod() {
+    pImpl->someMethodImpl();
+}
+```
+
 
 
 ### Benefits
@@ -108,18 +117,20 @@ While the Singleton pattern exists in many languages, its implementation in C++ 
 
 With C++11, the language provides built-in thread safety for static local variables. This makes the Meyers' Singleton pattern both simple and thread-safe:
 
-    class Singleton {
-    public:
-        static Singleton& getInstance() {
-            static Singleton instance;  // Guaranteed to be destroyed.
-                                        // Instantiated on first use.
-                                        // Thread safe in C++11 and later.
-            return instance;
-        }
+```cpp
+class Singleton {
+public:
+    static Singleton& getInstance() {
+        static Singleton instance;  // Guaranteed to be destroyed.
+                                    // Instantiated on first use.
+                                    // Thread safe in C++11 and later.
+        return instance;
+    }
 
-        Singleton(Singleton const&) = delete;            // Don't allow copy construction
-        void operator=(Singleton const&) = delete;       // Don't allow copy assignment
+    Singleton(Singleton const&) = delete;            // Don't allow copy construction
+    void operator=(Singleton const&) = delete;       // Don't allow copy assignment
 
-    private:
-        Singleton() {}  // Private constructor
-    };
+private:
+    Singleton() {}  // Private constructor
+};
+```
