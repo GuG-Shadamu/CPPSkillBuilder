@@ -2,7 +2,7 @@
  * @Author: Tairan Gao
  * @Date:   2023-10-16 17:37:27
  * @Last Modified by:   Tairan Gao
- * @Last Modified time: 2023-10-17 19:10:06
+ * @Last Modified time: 2023-10-17 19:58:25
  */
 
 #include <iostream>
@@ -277,25 +277,70 @@ namespace
      * 13. Define Uniq.
      */
 
+
     template <typename T>
     struct Uniq;
 
-    template <int H, int HH, int... T>
-    struct Uniq<Vector<H, HH, T...>>
-    {
-        using type =
+
+    template <int ...T>
+    struct Uniq<Vector<T...>>{
+        using type = Vector<T...>;
     };
 
-    // static_assert(std::is_same_v<Uniq<Vector<1,1,2,2,1,1>>::type, Vector<1,2,1>>);
+
+    template <int H, int ...T>
+    struct Uniq<Vector<H, H, T...>>{
+        using type = typename Prepend<H, typename Uniq<Vector<T...>>::type>::type;
+    };
+
+
+
+    static_assert(std::is_same_v<Uniq<Vector<1, 1, 2, 2, 1, 1>>::type, Vector<1, 2, 1>>);
 
     /**
      * 14. Define type Set.
      */
 
-    // Your code goes here:
-    // ^ Your code goes here
+    template <typename T>
+    struct SetFrom;
 
-    // static_assert(std::is_same_v<Set<2,1,3,1,2,3>::type, Set<1,2,3>::type>);
+    template <int H, int HH, int... T>
+    struct SetFrom<Vector<H, HH, T...>>
+    {
+        using type = typename Sort
+        <
+            typename Prepend
+            <
+                H, typename SetFrom
+                <
+                    typename RemoveAll
+                    <
+                        H, Vector<HH, T...>
+                    >::type
+                >::type
+            >::type
+        >::type;
+    };
+
+
+    template <int... T>
+    struct SetFrom<Vector<T...>>
+    {
+        using type = Vector<T...>;
+    };
+
+
+
+    template <int... INTS>
+    struct Set;
+
+    template <int... INTS>
+    struct Set
+    {
+        using type = typename SetFrom<Vector<INTS...>>::type;
+    };
+
+    static_assert(std::is_same_v<Set<2, 1, 3, 1, 2, 3>::type, Set<1, 2, 3>::type>);
 
     /**
      * 15. Define SetFrom.
@@ -304,15 +349,27 @@ namespace
     // Your code goes here:
     // ^ Your code goes here
 
-    // static_assert(std::is_same_v<SetFrom<Vector<2,1,3,1,2,3>>::type, Set<1,2,3>::type>);
+    static_assert(std::is_same_v<SetFrom<Vector<2,1,3,1,2,3>>::type, Set<1,2,3>::type>);
 
     /**
      * 16. Define Get for Vector.
      * Provide an improved error message when accessing outside of Vector bounds.
      */
 
-    // Your code goes here:
-    // ^ Your code goes here
+    template<int G, typename T>
+    struct Get;
+
+    template<int G, int H, int HH, int ...T>
+    struct Get<G, Vector<H, HH, T...>>{
+        static constexpr int value = 
+            Get<G-1, Vector<HH, T...>>::value;
+    };
+
+    template<int H, int ...T>
+    struct Get<0, Vector<H, T...>>{
+        static constexpr int value = H;
+    };
+
 
     // static_assert(Get<0, Vector<0,1,2>>::value == 0);
     // static_assert(Get<1, Vector<0,1,2>>::value == 1);
