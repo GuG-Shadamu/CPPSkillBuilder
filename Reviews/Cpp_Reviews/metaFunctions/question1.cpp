@@ -2,7 +2,7 @@
  * @Author: Tairan Gao
  * @Date:   2023-10-16 17:37:27
  * @Last Modified by:   Tairan Gao
- * @Last Modified time: 2023-10-17 19:58:25
+ * @Last Modified time: 2023-10-17 20:29:18
  */
 
 #include <iostream>
@@ -72,9 +72,9 @@ namespace
      */
 
     template <int H, typename V>
-    using PrependT = typename Prepend<H, V>::type;
+    using Prepend_t = typename Prepend<H, V>::type;
 
-    static_assert(std::is_same_v<PrependT<1, Vector<2, 3>>, Vector<1, 2, 3>>);
+    static_assert(std::is_same_v<Prepend_t<1, Vector<2, 3>>, Vector<1, 2, 3>>);
 
     /**
      * 5. Define Append.
@@ -83,10 +83,13 @@ namespace
     template <int H, typename V>
     struct Append;
 
+    template <int H, typename V>
+    using Append_t = typename Append<H, V>::type;
+
     template <int N, int H, int... T>
     struct Append<N, Vector<H, T...>>
     {
-        using type = typename Prepend<H, typename Append<N, Vector<T...>>::type>::type;
+        using type = Prepend_t<H, Append_t<N, Vector<T...>>>;
     };
 
     template <int N>
@@ -104,10 +107,13 @@ namespace
     template <typename V>
     struct PopBack;
 
+    template <typename V>
+    using PopBack_t = typename PopBack<V>::type;
+
     template <int H, int... T>
     struct PopBack<Vector<H, T...>>
     {
-        using type = typename Prepend<H, typename PopBack<Vector<T...>>::type>::type;
+        using type = Prepend_t<H, PopBack_t<Vector<T...>>>;
     };
 
     template <int T>
@@ -125,10 +131,13 @@ namespace
     template <int N, typename V>
     struct RemoveFirst;
 
+    template <int N, typename V>
+    using RemoveFirst_t = typename RemoveFirst<N, V>::type;
+
     template <int N, int H, int... T>
     struct RemoveFirst<N, Vector<H, T...>>
     {
-        using type = typename Prepend<H, typename RemoveFirst<N, Vector<T...>>::type>::type;
+        using type = Prepend_t<H, RemoveFirst_t<N, Vector<T...>>>;
     };
 
     template <int N, int... T>
@@ -152,16 +161,19 @@ namespace
     template <int N, typename V>
     struct RemoveAll;
 
+    template <int N, typename V>
+    using RemoveAll_t = typename RemoveAll<N, V>::type;
+
     template <int N, int H, int... T>
     struct RemoveAll<N, Vector<H, T...>>
     {
-        using type = typename Prepend<H, typename RemoveAll<N, Vector<T...>>::type>::type;
+        using type = Prepend_t<H, RemoveAll_t<N, Vector<T...>>>;
     };
 
     template <int N, int... T>
     struct RemoveAll<N, Vector<N, T...>>
     {
-        using type = typename RemoveAll<N, Vector<T...>>::type;
+        using type = RemoveAll_t<N, Vector<T...>>;
     };
 
     template <int N, int... T>
@@ -277,23 +289,20 @@ namespace
      * 13. Define Uniq.
      */
 
-
     template <typename T>
     struct Uniq;
 
-
-    template <int ...T>
-    struct Uniq<Vector<T...>>{
+    template <int... T>
+    struct Uniq<Vector<T...>>
+    {
         using type = Vector<T...>;
     };
 
-
-    template <int H, int ...T>
-    struct Uniq<Vector<H, H, T...>>{
+    template <int H, int... T>
+    struct Uniq<Vector<H, H, T...>>
+    {
         using type = typename Prepend<H, typename Uniq<Vector<T...>>::type>::type;
     };
-
-
 
     static_assert(std::is_same_v<Uniq<Vector<1, 1, 2, 2, 1, 1>>::type, Vector<1, 2, 1>>);
 
@@ -307,29 +316,18 @@ namespace
     template <int H, int HH, int... T>
     struct SetFrom<Vector<H, HH, T...>>
     {
-        using type = typename Sort
-        <
-            typename Prepend
-            <
-                H, typename SetFrom
-                <
-                    typename RemoveAll
-                    <
-                        H, Vector<HH, T...>
-                    >::type
-                >::type
-            >::type
-        >::type;
+        using type = typename Sort<
+            typename Prepend<
+                H, typename SetFrom<
+                       typename RemoveAll<
+                           H, Vector<HH, T...>>::type>::type>::type>::type;
     };
-
 
     template <int... T>
     struct SetFrom<Vector<T...>>
     {
         using type = Vector<T...>;
     };
-
-
 
     template <int... INTS>
     struct Set;
@@ -349,27 +347,28 @@ namespace
     // Your code goes here:
     // ^ Your code goes here
 
-    static_assert(std::is_same_v<SetFrom<Vector<2,1,3,1,2,3>>::type, Set<1,2,3>::type>);
+    static_assert(std::is_same_v<SetFrom<Vector<2, 1, 3, 1, 2, 3>>::type, Set<1, 2, 3>::type>);
 
     /**
      * 16. Define Get for Vector.
      * Provide an improved error message when accessing outside of Vector bounds.
      */
 
-    template<int G, typename T>
+    template <int G, typename T>
     struct Get;
 
-    template<int G, int H, int HH, int ...T>
-    struct Get<G, Vector<H, HH, T...>>{
-        static constexpr int value = 
-            Get<G-1, Vector<HH, T...>>::value;
+    template <int G, int H, int HH, int... T>
+    struct Get<G, Vector<H, HH, T...>>
+    {
+        static constexpr int value =
+            Get<G - 1, Vector<HH, T...>>::value;
     };
 
-    template<int H, int ...T>
-    struct Get<0, Vector<H, T...>>{
+    template <int H, int... T>
+    struct Get<0, Vector<H, T...>>
+    {
         static constexpr int value = H;
     };
-
 
     // static_assert(Get<0, Vector<0,1,2>>::value == 0);
     // static_assert(Get<1, Vector<0,1,2>>::value == 1);
