@@ -2,7 +2,7 @@
  * @Author: Tairan Gao
  * @Date:   2023-10-16 17:37:27
  * @Last Modified by:   Tairan Gao
- * @Last Modified time: 2023-10-17 20:29:18
+ * @Last Modified time: 2023-10-18 18:09:52
  */
 
 #include <iostream>
@@ -29,23 +29,23 @@ namespace
      * See main() below.
      */
 
-    template <int... T>
-    void print(Vector<T...>) // empty vector case
+    template <template <int...> class Container, int... T>
+    void print(Container<T...>) // empty vector case
     {
         std::cout << std::endl;
     }
 
-    template <int H>
-    void print(Vector<H>)
+    template <template <int...> class Container, int H>
+    void print(Container<H>)
     {
         std::cout << H << std::endl;
     }
 
-    template <int H, int... T>
-    void print(Vector<H, T...>)
+    template <template <int...> class Container, int H, int... T>
+    void print(Container<H, T...>)
     {
         std::cout << H << " ";
-        print(Vector<T...>{});
+        print(Container<T...>{});
     }
 
     /**
@@ -63,6 +63,7 @@ namespace
     };
 
     static_assert(std::is_same_v<Prepend<1, Vector<2, 3>>::type, Vector<1, 2, 3>>);
+    static_assert(std::is_same_v<Prepend<1, Vector<>>::type, Vector<1>>);
 
     /**
      * 4. Define PrependT that can be used without ::type.
@@ -75,6 +76,7 @@ namespace
     using Prepend_t = typename Prepend<H, V>::type;
 
     static_assert(std::is_same_v<Prepend_t<1, Vector<2, 3>>, Vector<1, 2, 3>>);
+    static_assert(std::is_same_v<Prepend_t<1, Vector<>>, Vector<1>>);
 
     /**
      * 5. Define Append.
@@ -134,25 +136,26 @@ namespace
     template <int N, typename V>
     using RemoveFirst_t = typename RemoveFirst<N, V>::type;
 
-    template <int N, int H, int... T>
-    struct RemoveFirst<N, Vector<H, T...>>
+    template <int N, template <int...> class Container, int... Ints>
+    struct RemoveFirst<N, Container<Ints...>>
     {
-        using type = Prepend_t<H, RemoveFirst_t<N, Vector<T...>>>;
+        using type = Container<Ints...>;
     };
 
-    template <int N, int... T>
-    struct RemoveFirst<N, Vector<N, T...>>
+    template <int N, template <int...> class Container, int H, int... T>
+    struct RemoveFirst<N, Container<H, T...>>
     {
-        using type = Vector<T...>;
+        using type = Prepend_t<H, RemoveFirst_t<N, Container<T...>>>;
     };
 
-    template <int N, int... T>
-    struct RemoveFirst<N, Vector<T...>>
+    template <int N, template <int...> class Container, int... T>
+    struct RemoveFirst<N, Container<N, T...>>
     {
-        using type = Vector<T...>;
+        using type = Container<T...>;
     };
 
     static_assert(std::is_same_v<RemoveFirst<1, Vector<1, 1, 2>>::type, Vector<1, 2>>);
+    static_assert(std::is_same_v<RemoveFirst<1, Vector<1>>::type, Vector<>>);
 
     /**
      * 8. Define RemoveAll, that removes all occurences of element R from vector V.
@@ -164,32 +167,26 @@ namespace
     template <int N, typename V>
     using RemoveAll_t = typename RemoveAll<N, V>::type;
 
-    template <int N, int H, int... T>
-    struct RemoveAll<N, Vector<H, T...>>
+    template <int N, template <int...> class Container>
+    struct RemoveAll<N, Container<>>
     {
-        using type = Prepend_t<H, RemoveAll_t<N, Vector<T...>>>;
+        using type = Container<>;
     };
 
-    template <int N, int... T>
-    struct RemoveAll<N, Vector<N, T...>>
+    template <int N, template <int... INTS> class Container, int H, int... T>
+    struct RemoveAll<N, Container<H, T...>>
     {
-        using type = RemoveAll_t<N, Vector<T...>>;
+        using type = Prepend_t<H, RemoveAll_t<N, Container<T...>>>;
     };
 
-    template <int N, int... T>
-    struct RemoveAll<N, Vector<T...>>
+    template <int N, template <int... INTS> class Container, int... T>
+    struct RemoveAll<N, Container<N, T...>>
     {
-        using type = Vector<T...>;
-    };
-
-    template <int N>
-    struct RemoveAll<N, Vector<N>>
-    {
-        using type = Vector<>;
+        using type = RemoveAll_t<N, Container<T...>>;
     };
 
     static_assert(std::is_same_v<RemoveAll<9, Vector<1, 9, 2, 9, 3, 9>>::type, Vector<1, 2, 3>>);
-
+    static_assert(std::is_same_v<RemoveAll<9, Vector<9, 9, 9>>::type, Vector<>>);
     /**
      * 9. Define Length.
      * Hint: Use `static constexpr int value = ...` inside the struct.
@@ -198,19 +195,20 @@ namespace
     template <typename T>
     struct Length;
 
-    template <int H, int... T>
-    struct Length<Vector<H, T...>>
+    template <template <int...> class Container, int H, int... T>
+    struct Length<Container<H, T...>>
     {
-        static constexpr int value = Length<Vector<T...>>::value + 1;
+        static constexpr int value = Length<Container<T...>>::value + 1;
     };
 
-    template <>
-    struct Length<Vector<>>
+    template <template <int...> class Container>
+    struct Length<Container<>>
     {
         static constexpr int value = 0;
     };
 
     static_assert(Length<Vector<1, 2, 3>>::value == 3);
+    static_assert(Length<Vector<>>::value == 0);
 
     /**
      * 10. Define length, which works like Length<V>::value.
@@ -230,31 +228,31 @@ namespace
     template <int M, typename T>
     struct Min_;
 
-    template <int M, int H, int... T>
-    struct Min_<M, Vector<H, T...>>
+    template <int M, template <int...> class Container, int H, int... T>
+    struct Min_<M, Container<H, T...>>
     {
-        static constexpr int value = M < Min_<H, Vector<T...>>::value ? M : Min_<H, Vector<T...>>::value;
+        static constexpr int value = M < H ? Min_<M, Container<T...>>::value : Min_<H, Container<T...>>::value;
     };
 
-    template <int M, int H>
-    struct Min_<M, Vector<H>>
+    template <int M, template <int...> class Container>
+    struct Min_<M, Container<>>
     {
-        static constexpr int value = M < H ? M : H;
+        static constexpr int value = M;
     };
 
     template <typename T>
     struct Min;
 
-    template <int H>
-    struct Min<Vector<H>>
+    template <template <int H> class Container, int H>
+    struct Min<Container<H>>
     {
         static constexpr int value = H;
     };
 
-    template <int H, int... T>
-    struct Min<Vector<H, T...>>
+    template <template <int...> class Container, int H, int... T>
+    struct Min<Container<H, T...>>
     {
-        static constexpr int value = Min_<H, Vector<T...>>::value;
+        static constexpr int value = Min_<H, Container<T...>>::value;
     };
 
     static_assert(Min<Vector<3, 1, 2>>::value == 1);
@@ -265,20 +263,28 @@ namespace
      * 12. Define Sort.
      */
 
+    // Forward declaration
+    // Forward declaration
     template <typename T>
     struct Sort;
 
-    template <int... T>
-    struct Sort<Vector<T...>>
+    template <typename T>
+    using Sort_t = typename Sort<T>::type;
+
+    // General case
+    template <template <int...> class Container, int First, int... Rest>
+    struct Sort<Container<First, Rest...>>
     {
-        static constexpr int min = Min<Vector<T...>>::value;
-        using type = typename Prepend<min, typename Sort<typename RemoveFirst<min, Vector<T...>>::type>::type>::type;
+        static constexpr int min = Min<Container<First, Rest...>>::value;
+        using removed_type = RemoveFirst_t<min, Container<First, Rest...>>;
+        using type = Prepend_t<min, Sort_t<removed_type>>;
     };
 
-    template <int H>
-    struct Sort<Vector<H>>
+    // Base case for an empty container
+    template <template <int...> class Container>
+    struct Sort<Container<>>
     {
-        using type = Vector<H>;
+        using type = Container<>;
     };
 
     static_assert(std::is_same_v<Sort<Vector<4, 1, 2, 5, 6, 3>>::type, Vector<1, 2, 3, 4, 5, 6>>);
@@ -292,22 +298,34 @@ namespace
     template <typename T>
     struct Uniq;
 
-    template <int... T>
-    struct Uniq<Vector<T...>>
+    template <typename T>
+    using Uniq_t = typename Uniq<T>::type;
+
+    template <template <int...> class Container, int... T>
+    struct Uniq<Container<T...>>
     {
-        using type = Vector<T...>;
+        using type = Container<T...>;
     };
 
-    template <int H, int... T>
-    struct Uniq<Vector<H, H, T...>>
+    template <template <int...> class Container, int H, int... T>
+    struct Uniq<Container<H, H, T...>>
     {
-        using type = typename Prepend<H, typename Uniq<Vector<T...>>::type>::type;
+        using type = Prepend_t<H, Uniq_t<Container<T...>>>;
     };
 
     static_assert(std::is_same_v<Uniq<Vector<1, 1, 2, 2, 1, 1>>::type, Vector<1, 2, 1>>);
 
     /**
      * 14. Define type Set.
+     */
+
+    template <int... T>
+    struct Set
+    {
+        using type = typename Uniq<typename Sort<Vector<T...>>::type>::type;
+    };
+    /**
+     * 15. Define SetFrom.
      */
 
     template <typename T>
@@ -329,24 +347,6 @@ namespace
         using type = Vector<T...>;
     };
 
-    template <int... INTS>
-    struct Set;
-
-    template <int... INTS>
-    struct Set
-    {
-        using type = typename SetFrom<Vector<INTS...>>::type;
-    };
-
-    static_assert(std::is_same_v<Set<2, 1, 3, 1, 2, 3>::type, Set<1, 2, 3>::type>);
-
-    /**
-     * 15. Define SetFrom.
-     */
-
-    // Your code goes here:
-    // ^ Your code goes here
-
     static_assert(std::is_same_v<SetFrom<Vector<2, 1, 3, 1, 2, 3>>::type, Set<1, 2, 3>::type>);
 
     /**
@@ -357,23 +357,26 @@ namespace
     template <int G, typename T>
     struct Get;
 
-    template <int G, int H, int HH, int... T>
-    struct Get<G, Vector<H, HH, T...>>
-    {
-        static constexpr int value =
-            Get<G - 1, Vector<HH, T...>>::value;
-    };
-
     template <int H, int... T>
     struct Get<0, Vector<H, T...>>
     {
         static constexpr int value = H;
     };
 
-    // static_assert(Get<0, Vector<0,1,2>>::value == 0);
-    // static_assert(Get<1, Vector<0,1,2>>::value == 1);
-    // static_assert(Get<2, Vector<0,1,2>>::value == 2);
-    // static_assert(Get<9, Vector<0,1,2>>::value == 2); // How good is your error message?
+    template <int G, int H, int... T>
+    struct Get<G, Vector<H, T...>>
+    {
+        static_assert(G >= 0, "Access out of bounds.");
+        static constexpr int len = Length<Vector<H, T...>>::value;
+        static_assert(G < len, "Access out of bounds.");
+        static constexpr int value =
+            Get<G - 1, Vector<T...>>::value;
+    };
+
+    static_assert(Get<0, Vector<0, 1, 2>>::value == 0);
+    static_assert(Get<1, Vector<0, 1, 2>>::value == 1);
+    static_assert(Get<2, Vector<0, 1, 2>>::value == 2);
+    // static_assert(Get<9, Vector<0, 1, 2>>::value == 2); // How good is your error message?
 
     /**
      * 17. Define BisectLeft for Vector.
@@ -417,6 +420,10 @@ int main()
 {
     print(Vector<>{});
     print(Vector<1>{});
-    print(Vector<1, 2, 3, 4, 5, 6>{});
+
+    print(Set<1>{});
+    print(Set<1, 2>{});
+    print(Set<1, 1, 2>{});
+
     std::cout << typeid(Vector<1, 2, 3, 4, 5, 6>{}).name() << '\n';
 }
