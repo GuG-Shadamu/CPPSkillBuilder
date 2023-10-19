@@ -2,7 +2,7 @@
  * @Author: Tairan Gao
  * @Date:   2023-10-16 17:37:27
  * @Last Modified by:   Tairan Gao
- * @Last Modified time: 2023-10-18 18:09:52
+ * @Last Modified time: 2023-10-18 21:17:02
  */
 
 #include <iostream>
@@ -16,9 +16,21 @@ namespace
      * Hint: Use non-type template parameter pack.
      */
 
-    template <int...>
+    template <int... Ints>
     struct Vector
     {
+        static constexpr size_t size = sizeof...(Ints);
+        static constexpr int data[size] = {Ints...};
+        static void print()
+        {
+            for (size_t i = 0; i < size; ++i)
+            {
+                std::cout << data[i];
+                if (i < size - 1)
+                    std::cout << ", ";
+            }
+            std::cout << std::endl;
+        }
     };
 
     static_assert(std::is_same_v<Vector<1, 2>, Vector<1, 2>>);
@@ -29,24 +41,30 @@ namespace
      * See main() below.
      */
 
-    template <template <int...> class Container, int... T>
-    void print(Container<T...>) // empty vector case
+    template <int... Ints>
+    void print(const Vector<Ints...> &v)
     {
-        std::cout << std::endl;
+        v.print();
     }
 
-    template <template <int...> class Container, int H>
-    void print(Container<H>)
-    {
-        std::cout << H << std::endl;
-    }
+    // template <template <int...> class Container, int... T>
+    // void print(Container<T...>) // empty vector case
+    // {
+    //     std::cout << std::endl;
+    // }
 
-    template <template <int...> class Container, int H, int... T>
-    void print(Container<H, T...>)
-    {
-        std::cout << H << " ";
-        print(Container<T...>{});
-    }
+    // template <template <int...> class Container, int H>
+    // void print(Container<H>)
+    // {
+    //     std::cout << H << std::endl;
+    // }
+
+    // template <template <int...> class Container, int H, int... T>
+    // void print(Container<H, T...>)
+    // {
+    //     std::cout << H << " ";
+    //     print(Container<T...>{});
+    // }
 
     /**
      * 3. Define Prepend.
@@ -322,7 +340,7 @@ namespace
     template <int... T>
     struct Set
     {
-        using type = typename Uniq<typename Sort<Vector<T...>>::type>::type;
+        using type = Uniq_t<Sort_t<Vector<T...>>>;
     };
     /**
      * 15. Define SetFrom.
@@ -334,11 +352,11 @@ namespace
     template <int H, int HH, int... T>
     struct SetFrom<Vector<H, HH, T...>>
     {
-        using type = typename Sort<
-            typename Prepend<
+        using type = Sort_t<
+            Prepend_t<
                 H, typename SetFrom<
-                       typename RemoveAll<
-                           H, Vector<HH, T...>>::type>::type>::type>::type;
+                       RemoveAll_t<
+                           H, Vector<HH, T...>>>::type>>;
     };
 
     template <int... T>
@@ -379,6 +397,46 @@ namespace
     // static_assert(Get<9, Vector<0, 1, 2>>::value == 2); // How good is your error message?
 
     /**
+     * 17. Define Linear Search for Vector.
+     * If it doesn't exist, return the length of the array.
+     */
+
+    template <int F, typename V>
+    struct LinearSearch;
+
+    template <int F, typename V, int I>
+    struct LinearSearchHelper;
+
+    template <int F, template <int...> class Container, int I, int H, int... T>
+    struct LinearSearchHelper<F, Container<H, T...>, I>
+    {
+        static constexpr int value = LinearSearchHelper<F, Container<T...>, I + 1>::value;
+    };
+
+    template <int F, template <int...> class Container, int I, int... T>
+    struct LinearSearchHelper<F, Container<F, T...>, I>
+    {
+        static constexpr int value = I;
+    };
+
+    template <int F, template <int...> class Container, int I>
+    struct LinearSearchHelper<F, Container<>, I>
+    {
+        static constexpr int value = I;
+    };
+
+    template <int F, template <int...> class Container, int... T>
+    struct LinearSearch<F, Container<T...>>
+    {
+        static constexpr int value = LinearSearchHelper<F, Container<T...>, 0>::value;
+    };
+
+    static_assert(LinearSearch<3, Vector<0, 1, 2, 3, 4>>::value == 3);
+    static_assert(LinearSearch<9, Vector<0, 1, 2, 4, 5>>::value == 5);
+    static_assert(LinearSearch<-1, Vector<0, 1, 2, 4, 5>>::value == 5);
+    static_assert(LinearSearch<2, Vector<0, 2, 2, 2, 2, 2>>::value == 1);
+
+    /**
      * 17. Define BisectLeft for Vector.
      * Given n and arr, return the first index i such that arr[i] >= n.
      * If it doesn't exist, return the length of the array.
@@ -388,8 +446,17 @@ namespace
      * Hint: You might find it convenient to define a constexpr helper function.
      */
 
-    // Your code goes here:
-    // ^ Your code goes here
+    template <int F, typename V>
+    struct BisectLeft;
+
+    template <int F, typename V, int I>
+    struct BisectLeftHelper;
+
+    template <int F, template <int...> class Container, int I, int H, int... T>
+    struct BisectLeftHelper<F, Container<H, T...>, I>
+    {
+        static constexpr int len = Length<Container<H, T...>>::value;
+        };
 
     // static_assert(BisectLeft<  3, Vector<0,1,2,3,4>>::value == 3);
     // static_assert(BisectLeft<  3, Vector<0,1,2,4,5>>::value == 3);
