@@ -2,7 +2,7 @@
  * @Author: Tairan Gao
  * @Date:   2023-10-16 17:37:27
  * @Last Modified by:   Tairan Gao
- * @Last Modified time: 2023-10-18 21:17:02
+ * @Last Modified time: 2023-10-18 22:18:10
  */
 
 #include <iostream>
@@ -456,7 +456,7 @@ namespace
     struct BisectLeftHelper<F, Container<H, T...>, I>
     {
         static constexpr int len = Length<Container<H, T...>>::value;
-        };
+    };
 
     // static_assert(BisectLeft<  3, Vector<0,1,2,3,4>>::value == 3);
     // static_assert(BisectLeft<  3, Vector<0,1,2,4,5>>::value == 3);
