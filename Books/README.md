@@ -25,8 +25,5 @@ This README serves as a personal tracker for my C++ learning journey, helping me
 ### C++ Template Metaprogramming: Concepts, Tools, and Techniques from Boost and Beyond - David Abrahams and Aleksey Gurtovoy
 - **Anticipated Learning**: Aiming to gain in-depth knowledge of C++ template metaprogramming and practical applications using the Boost library.
 
-## Additional Resources
-[Add any supplementary resources such as websites, online courses, or tutorials here]
-
 
 This document will be updated regularly to reflect my progress and new insights gained throughout this learning journey.
