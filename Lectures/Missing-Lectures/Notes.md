@@ -179,7 +179,7 @@
     
 - [signal(7) - Linux manual page (man7.org)](https://man7.org/linux/man-pages/man7/signal.7.html):
     
-    ![Untitled](The%20Missing%20Semester%20of%20Your%20CS%20Education%20082ced87fa7b4dcbbf8c8fcfc05ab8d1/Untitled.png)
+    ![Untitled](img/Untitled.png)
     
 - `SIGKILL`cannot be captured by the process, so it could be harmful
 - `SIGUP` hangs up the program
