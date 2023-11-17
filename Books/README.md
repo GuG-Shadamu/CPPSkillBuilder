@@ -14,7 +14,7 @@ This README serves as a personal tracker for my C++ learning journey, helping me
 
 
 ### Operating Systems: Three Easy Pieces - Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau
-- **Progress**: 6/50 chapters
+- **Progress**: 9/50 chapters
 
 
 ## Planned Reading
