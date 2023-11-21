@@ -1,49 +1,49 @@
 # Virtual Function
 
 ## Example:
+```cpp
+#include <iostream>
 
-    #include <iostream>
-
-    // Base class
-    class Shape {
-    public:
-        virtual void draw() const {
-            std::cout << "Drawing a shape." << std::endl;
-        }
-
-        virtual ~Shape() {}  // Virtual destructor
-    };
-
-    // Derived class 1
-    class Circle : public Shape {
-    public:
-        void draw() const override {
-            std::cout << "Drawing a circle." << std::endl;
-        }
-    };
-
-    // Derived class 2
-    class Square : public Shape {
-    public:
-        void draw() const override {
-            std::cout << "Drawing a square." << std::endl;
-        }
-    };
-
-    int main() {
-        Shape* shape1 = new Circle();
-        Shape* shape2 = new Square();
-
-        shape1->draw();  // Outputs: Drawing a circle.
-        shape2->draw();  // Outputs: Drawing a square.
-
-        delete shape1;
-        delete shape2;
-
-        return 0;
+// Base class
+class Shape {
+public:
+    virtual void draw() const {
+        std::cout << "Drawing a shape." << std::endl;
     }
 
+    virtual ~Shape() {}  // Virtual destructor
+};
 
+// Derived class 1
+class Circle : public Shape {
+public:
+    void draw() const override {
+        std::cout << "Drawing a circle." << std::endl;
+    }
+};
+
+// Derived class 2
+class Square : public Shape {
+public:
+    void draw() const override {
+        std::cout << "Drawing a square." << std::endl;
+    }
+};
+
+int main() {
+    Shape* shape1 = new Circle();
+    Shape* shape2 = new Square();
+
+    shape1->draw();  // Outputs: Drawing a circle.
+    shape2->draw();  // Outputs: Drawing a square.
+
+    delete shape1;
+    delete shape2;
+
+    return 0;
+}
+
+```
 
 ## V-Ptr
 
