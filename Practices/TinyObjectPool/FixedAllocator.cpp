@@ -2,7 +2,7 @@
  * @Author: Tairan Gao
  * @Date:   2023-11-22 13:12:38
  * @Last Modified by:   Tairan Gao
- * @Last Modified time: 2023-11-22 20:13:27
+ * @Last Modified time: 2023-11-24 15:22:59
  */
 
 #include <cstddef>
@@ -19,7 +19,13 @@ class FixedAllocator
 public:
     void *Allocate();
     void Deallocate(void *p, Chunk *hint);
+
+    FixedAllocator();
     ~FixedAllocator();
+
+private:
+    Chunk *VicinityFind(void *p) const;
+    void DoDeallocate(void *p);
 
 private:
     std::size_t blockSize_;
@@ -27,9 +33,13 @@ private:
     Chunks chunks_;
     Chunk *allocChunk_ = nullptr;
     Chunk *deallocChunk_ = nullptr;
-
     Chunk *emptyChunk_ = nullptr;
 };
+
+FixedAllocator::FixedAllocator()
+    : blockSize_(0), numBlocks_(0), chunks_({}), allocChunk_(nullptr), deallocChunk_(nullptr), emptyChunk_(nullptr)
+{
+}
 
 FixedAllocator::~FixedAllocator()
 {
@@ -74,11 +84,95 @@ void *FixedAllocator::Allocate()
 
 void FixedAllocator::Deallocate(void *p, Chunk *hint)
 {
-    if (p == nullptr)
+    Chunk *foundChunk = (hint) ? hint : VicinityFind(p);
+    if (!foundChunk)
         return;
 
-    if (emptyChunk_ == nullptr)
+    if (foundChunk->IsBlockAvailable(p, numBlocks_, blockSize_))
+        return;
+    deallocChunk_ = foundChunk;
+    DoDeallocate(p);
+}
+
+Chunk *FixedAllocator::VicinityFind(void *p) const
+{
+    if (chunks_.empty())
+        return nullptr;
+
+    assert(deallocChunk_);
+
+    const std::size_t chunkLength = numBlocks_ * blockSize_;
+    Chunk *lo = deallocChunk_;
+    Chunk *hi = deallocChunk_ + 1;
+    const Chunk *loBound = &chunks_.front();
+    const Chunk *hiBound = &chunks_.back() + 1;
+
+    // Special case: deallocChunk_ is the last in the array
+    if (hi == hiBound)
+        hi = nullptr;
+
+    while (true)
     {
-        p->
+        if (lo)
+        {
+            if (lo->HasBlock(p, chunkLength))
+                return lo;
+            if (lo == loBound)
+            {
+                lo = nullptr;
+                if (!hi)
+                    break;
+            }
+            else
+                --lo;
+        }
+
+        if (hi)
+        {
+            if (hi->HasBlock(p, chunkLength))
+                return hi;
+            if (++hi == hiBound)
+            {
+                hi = nullptr;
+                if (!lo)
+                    break;
+            }
+        }
+    }
+
+    return nullptr;
+}
+
+void FixedAllocator::DoDeallocate(void *p)
+{
+    // Deallocate from the current chunk
+    deallocChunk_->Deallocate(p, blockSize_);
+
+    if (deallocChunk_->HasAvailable(numBlocks_))
+    {
+        if (emptyChunk_)
+        {
+            auto *lastChunk = &chunks_.back();
+
+            // Check if deallocChunk_ is the last chunk
+            if (lastChunk == deallocChunk_)
+            {
+                deallocChunk_ = emptyChunk_;
+            }
+            else if (lastChunk != emptyChunk_)
+            {
+                std::swap(*emptyChunk_, *lastChunk);
+            }
+            // Release the last chunk and remove it from the vector
+            lastChunk->Release();
+            chunks_.pop_back();
+
+            // Update allocChunk_ if necessary
+            if ((allocChunk_ == lastChunk) || allocChunk_->IsFilled())
+            {
+                allocChunk_ = deallocChunk_;
+            }
+        }
+        emptyChunk_ = deallocChunk_;
     }
 }

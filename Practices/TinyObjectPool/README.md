@@ -8,6 +8,9 @@
 
 This project presents a custom memory allocator optimized for small object allocation in C++. It addresses the inefficiencies of the default C++ allocators `malloc`, `realloc`, and `free` which are typically optimized for larger objects. By focusing on small objects, this allocator aims to reduce memory overhead and fragmentation, leading to improved performance in applications where small allocations and deallocations are frequent.
 
+## Resource
+<https://loki-lib.sourceforge.net/html/>
+
 ## Motivation
 
 The standard C++ memory allocators, while effective for large object management, are not optimized for small objects. This can result in performance bottlenecks, particularly in systems where memory efficiency is crucial. This project implements the concepts discussed in "Modern C++ Design: Generic Programming and Design Patterns Applied" by Andrei Alexandrescu, particularly focusing on efficient small object allocation.
@@ -33,3 +36,5 @@ The book, and thus its code, was written in 2001 while "Modern" C+ was not quite
 - Using `Vector` instead of Linked-List like Scott suggested, will decrease the overhead for small object.  
 
 ### SmallObjAllocator
+
+- TODO
