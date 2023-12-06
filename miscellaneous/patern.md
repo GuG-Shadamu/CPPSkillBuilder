@@ -9,6 +9,8 @@ This is more of an idiom than a design pattern. In C++, resource management (lik
 ## Curiously Recurring Template Pattern (CRTP):
 
 This is a C++ technique where a class Derived inherits from a base class template instantiated with Derived itself. It's a form of static polymorphism.
+CRTP may be used to implement "compile-time polymorphism", when a base class exposes an interface, and derived classes implement such interface.
+
 ```cpp
 template <typename Derived>
 class Base {};

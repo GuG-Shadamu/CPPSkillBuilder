@@ -2,13 +2,14 @@
  * @Author: Tairan Gao
  * @Date:   2023-11-30 14:34:57
  * @Last Modified by:   Tairan Gao
- * @Last Modified time: 2023-11-30 15:08:07
+ * @Last Modified time: 2023-12-03 14:59:51
  */
-#include <vector>
+
+#include <algorithm>
 #include <iostream>
 #include <unordered_map>
 #include <utility>
-#include <algorithm>
+#include <vector>
 
 int helper(int i, int n, int cur_energy, std::vector<int> &energies, std::vector<int> &coints, std::unordered_map<int, std::unordered_map<int, int>> &cache)
 {
