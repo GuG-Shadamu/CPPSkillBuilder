@@ -10,10 +10,12 @@
 - C++ 11 Feature
 - size is set, cannot be changed
 - Continue in memory space (连续的)
+- in stack, fixed in size during compile
 - ![Alt text](imgs/array.png)
 
 ## Vector
 - Continue in memory space (连续的)
+- stored in heap
 - 12 byte in total, contains only 3 pointers:
   1. start
   2. finish

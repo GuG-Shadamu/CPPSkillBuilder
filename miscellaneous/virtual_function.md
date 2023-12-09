@@ -11,7 +11,9 @@ public:
         std::cout << "Drawing a shape." << std::endl;
     }
 
-    virtual ~Shape() {}  // Virtual destructor
+    virtual ~Shape() {
+        std::cout << "Delete Base" << std::endl;
+    }  // Virtual destructor
 };
 
 // Derived class 1
@@ -19,6 +21,9 @@ class Circle : public Shape {
 public:
     void draw() const override {
         std::cout << "Drawing a circle." << std::endl;
+    }
+    ~Circle() {
+        std::cout << "Delete Circle" << std::endl;
     }
 };
 
@@ -37,8 +42,11 @@ int main() {
     shape1->draw();  // Outputs: Drawing a circle.
     shape2->draw();  // Outputs: Drawing a square.
 
-    delete shape1;
+    delete shape1; 
+    // Outputs: Delete circle.
+    // Outputs: Delete Base.
     delete shape2;
+    // Outputs: Delete Base.
 
     return 0;
 }
