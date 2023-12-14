@@ -11,6 +11,9 @@
   - If a base class's destructor is not virtual, and you delete an object of a derived class through a pointer to the base class, then the derived class's destructor will not be called. This can lead to resource leaks if the derived class manages resources that need to be cleaned up in its destructor.
   - Making the destructor virtual ensures that the correct destructor is called based on the actual type of the object, not just the type of the pointer. This is consistent with the behavior of other virtual functions, which are resolved at runtime based on the actual type of the object.
 
+- prevent exceptions from leaving destructors (they shall not be thrown out of the destructor)
+
+
 ```cpp
 class Base {
 public:
@@ -33,6 +36,42 @@ int main() {
 ```cpp
 ClassName(const ClassName& other);
 ```
+
+
+### co-variant return type:
+
+- use clone() in the virtual constructor, for example
+
+```cpp
+class Base{};
+
+class Derived : public Base{
+
+};
+
+void foo (Base* d){ // d is derived
+    Base* c = new Base(d); //  c is based
+
+}
+```
+
+this is not what we want, so we can modify this:
+
+```cpp
+class Base{
+    virtual Base* clone(){return (new Base(*this));} // co-variant return type
+};
+
+class Derived : public Base{
+    virtual Derived* clone(){return (new Derived(*this));}
+};
+
+void foo (Base* d){ // d is derived
+    Base* c = new Base(d); //  c is based
+
+}
+```
+
 
 ## 3. Copy Assignment Operator
 
