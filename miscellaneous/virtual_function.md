@@ -136,3 +136,14 @@ int main() {
 - Private Pure Virtual Functions: While they can technically be declared, they are generally not useful as virtual functions because derived classes cannot access them to provide an implementation. However, this is more of a design consideration rather than a strict rule.
 
 - Constexpr functions: A constexpr function in C++ is intended to be evaluated at compile-time, meaning that it can be used in contexts that require compile-time constants, like array sizes or template arguments. Because constexpr functions are resolved at compile-time, they cannot be declared as virtual.
+
+
+## V-table initialization
+
+1. v-table Initialization: When an object of a class with virtual functions is created, the v-table for that class is set up first. This table contains pointers to the virtual functions defined in the class.
+
+2. Constructor Execution: After the v-table is initialized, the constructor of the class is called. This order ensures that if any virtual functions are called within the constructor, they refer to the correct implementations as per the current class's v-table.
+
+3. Derived Class Construction: In the case of derived classes, the v-table is updated to point to the virtual functions of the derived class as the constructor of each derived class is called. This ensures that the virtual function calls are directed to the right implementations corresponding to the level of the class hierarchy being constructed.
+
+This mechanism is a part of C++'s runtime type identification and is essential for polymorphic behavior, particularly when constructors or destructors call virtual functions.

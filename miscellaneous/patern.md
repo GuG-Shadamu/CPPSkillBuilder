@@ -11,6 +11,7 @@ This is more of an idiom than a design pattern. In C++, resource management (lik
 This is a C++ technique where a class Derived inherits from a base class template instantiated with Derived itself. It's a form of static polymorphism.
 CRTP may be used to implement "compile-time polymorphism", when a base class exposes an interface, and derived classes implement such interface.
 
+
 ```cpp
 template <typename Derived>
 class Base {};
@@ -52,6 +53,24 @@ int main() {
 
 1. Performance: Since there's no dynamic dispatch (like with virtual functions), the compiler can inline methods, leading to potentially more optimized code.
 2. Static Polymorphism: Allows for polymorphic behavior determined at compile-time.
+
+Note that CRTP doesn't work well with multiple level of inherntence, also if you want some runtime feature such as 
+
+```cpp
+class Base;
+
+class Derived : public Base
+
+Base b;//  Base
+b.f(); // print Base
+
+Derived d;  // Base 
+d.f(); // print Derived
+
+Base& bd = d; //  this won't work under CRTP setting
+bd.f(); // Derived
+```
+
 
 ## Pimpl (Pointer to IMPLementation) Idiom
 
