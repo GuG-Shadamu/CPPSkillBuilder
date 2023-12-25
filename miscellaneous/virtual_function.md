@@ -1,6 +1,7 @@
 # Virtual Function
 
-## Example:
+## Example
+
 ```cpp
 #include <iostream>
 
@@ -66,9 +67,8 @@ V-Ptr points to V-Table
 
 Each class has it's own virtual table.
 
+## Dynamic Dispatch
 
-
-## Dynamic Dispatch:
 ```cpp
 #include <iostream>
 
@@ -120,7 +120,6 @@ int main() {
 }
 ```
 
-
 ## Functions cannot be virtual
 
 - Static Member Functions: A static member function cannot be virtual because it is not associated with any object. The virtual mechanism works through the object's v-table, and since static member functions have no this pointer, they can't be virtual.
@@ -137,7 +136,6 @@ int main() {
 
 - Constexpr functions: A constexpr function in C++ is intended to be evaluated at compile-time, meaning that it can be used in contexts that require compile-time constants, like array sizes or template arguments. Because constexpr functions are resolved at compile-time, they cannot be declared as virtual.
 
-
 ## V-table initialization
 
 1. v-table Initialization: When an object of a class with virtual functions is created, the v-table for that class is set up first. This table contains pointers to the virtual functions defined in the class.
@@ -147,3 +145,38 @@ int main() {
 3. Derived Class Construction: In the case of derived classes, the v-table is updated to point to the virtual functions of the derived class as the constructor of each derived class is called. This ensures that the virtual function calls are directed to the right implementations corresponding to the level of the class hierarchy being constructed.
 
 This mechanism is a part of C++'s runtime type identification and is essential for polymorphic behavior, particularly when constructors or destructors call virtual functions.
+
+## Calling Virtual Function from `Constructor`/`Destructor`
+
+Calling virtual functions from a constructor or destructor is dangerous and should be avoided whenever possible. All C++ implementations should call the version of the function defined at the level of the hierarchy in the current constructor and no further.
+
+**In a constructor, the virtual call mechanism is disabled because overriding from derived classes hasn’t yet happened.** Objects are constructed from the base up, “base before derived”.
+
+```cpp
+using namespace std;
+class B {
+public:
+    B(const string& ss) { cout << "B constructor\n"; f(ss); }
+    virtual void f(const string&) { cout << "B::f\n"; }
+};
+class D : public B {
+public:
+    D(const string& ss) :B(ss) { cout << "D constructor\n"; }
+    void f(const string& ss) { cout << "D::f\n"; s = ss; }
+private:
+    string s;
+};
+
+int main()
+{
+    D d("Hello");
+}
+```
+
+the print out are:
+
+```cpp
+B constructor
+B::f
+D constructor
+```
