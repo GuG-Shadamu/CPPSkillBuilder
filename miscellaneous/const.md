@@ -1,7 +1,9 @@
-# const
+# Const vs Volatile 
 
 
-## const variables
+## Const
+
+### const variables
 
 
 - A **compile time constraint**  that an object cannot be modified 
@@ -38,13 +40,32 @@ static_cast<const int&>(j);
 
 - avoid cast to/away const
 
-### pro
+#### pro
 
 - const means the variable can be put in ROM (read only memory)
 - enables compiler to do optimizeation
 
 
 
-## Const in Function
+### Const in Function
 
 - when a function is const and we want to change, say a recording value, we can mark that value as mutable
+
+
+
+## Volatile 
+
+
+### Volatile Variable
+
+`volatile` qualifier means that the compiler cannot apply optimizations or reorder access to T.
+
+
+### const volatile
+
+`const` qualifier means that the `T` cannot be modified through code. If you attempt to do so the compiler will provide a diagnostic. `volatile` still means that the compiler cannot optimize or reorder access to T.
+
+Practical Usage:
+
+- Accessing shared memory in read-only mode.
+- Accessing hardware registers in read-only mode.

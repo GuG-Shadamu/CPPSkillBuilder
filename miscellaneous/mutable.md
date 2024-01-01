@@ -1,5 +1,9 @@
 # Mutable
 
+Defines that a member of a class does not affect the externally visible state of the class. mutable members can be modified in constant classes, that is constness is essentially ignored for the particular member.
+
+---
+
 1. Caching: If a class member is used to store a cache of data that is expensive to compute, you might declare it mutable. This allows the cache to be updated in a const member function, which doesn't logically change the object's state from the user's perspective.
 
 2. Logging and Counting: If you want to keep track of how many times a const member function is called or log calls to these functions, a counter or logger can be declared mutable. This enables the logging or counting without violating the const-correctness.
